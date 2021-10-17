@@ -1,0 +1,72 @@
+% Clear Workspace
+clc;
+close all;
+clear;
+
+% Load Images
+img_1 = imread('image_1.jpg');
+img_2 = imread('image_2.jpg');
+img_3 = imread('image_3.jpg');
+img_4 = imread('image_4.jpg');
+
+% Show Results
+show(img_1);
+show(img_2);
+
+
+
+
+% Function
+function l = lavg(img)
+    [width, height, ~] = size(img);
+    l = 0;
+    for i=1:1:width
+       for j=1:1:height
+          l = l + img(i,j); 
+       end
+    end
+    l=l/(width*height);
+end
+
+function l = lmin(img)
+    l = min(min(min(img)));
+end
+
+function l = lmax(img)
+    l = max(max(max(img)));
+end
+
+function k = k1(img)
+    k = (lmax(img)-lmin(img))/255;
+end
+
+function k = k2(img)
+    k = (lmax(img)-lmin(img))/lavg(img);
+end
+
+function k = k3(img)
+    k = (lmax(img)-lmin(img))/(lmax(img)+lmin(img));
+end
+
+function k = k4(img)
+    [width, height, ~] = size(img);
+    k = 0;
+    l = lavg(img);
+    for i=1:1:width
+        for j=1:1:height
+            k = k+(img(i,j)-l).^2;
+        end
+    end
+    k = 4/(255*width*height)*k;
+end
+
+function show(img)
+    qimg = histeq(img);
+    title1 = sprintf('k1
+    
+    figure;
+    subplot(2,2,1), imshow(img);
+    subplot(2,2,2), imshow(qimg);
+    subplot(2,2,3), imhist(img);
+    subplot(2,2,4), imhist(qimg);
+end
