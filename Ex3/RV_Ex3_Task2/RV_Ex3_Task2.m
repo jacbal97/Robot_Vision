@@ -10,6 +10,8 @@ img_3 = imread('image_3.jpg');
 
 % Show Results
 compare(img_1,[3,3]);
+compare(img_2,[3,3]);
+compare(img_3,[3,3]);
 
 
 % Function
@@ -75,9 +77,13 @@ end
 function compare(I, M)
     figure;
     subplot(2,1,1), imshow(imMean(I,M));
+    title('my function');
     subplot(2,1,2), imshow(imfilter(I,fspecial('average',M(1))));
+    title('matlab implementation');
     
     figure;
     subplot(2,1,1), imshow(imGaussian(I,M));
+    title('my function');
     subplot(2,1,2), imshow(imfilter(I,fspecial('gaussian',M(1), std(reshape(double(I),1,[])))));
+    title('matlab implementation');
 end
