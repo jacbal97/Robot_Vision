@@ -27,7 +27,9 @@ function show(I, mode)
     tmp = unsharp(I, mode);
     figure;
     subplot(2,2,1), imshow(I);
+    title('original');
     subplot(2,2,2), imshow(tmp);
+    title('unsharp mask');
     subplot(2,2,3), imhist(I);
     subplot(2,2,4), imhist(tmp);
 end
