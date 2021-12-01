@@ -29,7 +29,7 @@ end
 
 function show(I)
     [per, img] = getPerimeter(I);
-    fprintf("Area: %d,\tPerimeter: %d\n", getArea(I), per);
     figure;
     imshow(img);
+    title("Area: " + getArea(I) + " Peri: " + per);
 end
